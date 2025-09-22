@@ -33,6 +33,7 @@
     </style>
 </head>
 <body>
+    <h1> ini halaman yang hanya bisa diakses oleh admin dan owner</h1>
     <div class="container">
         <a href="{{ url('/profil') }}" class="btn">Profil</a>
         <a href="{{ url('/pengaturan') }}" class="btn">Pengaturan</a>

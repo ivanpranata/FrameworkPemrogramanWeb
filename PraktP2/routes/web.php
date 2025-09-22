@@ -2,14 +2,25 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+
+Route::get('/product/{angka}',[ProductController::class, 'index']);
+Route::get('/product/create',[ProductController::class, 'create']);
+Route::post('/product',[ProductController::class, 'store']);
+Route::get('/product/{id}',[ProductController::class, 'show']);
+Route::get('/product/{id}/edit',[ProductController::class, 'edit']);
+Route::get('/product/{id}',[ProductController::class, 'update']);
+Route::get('/product/{id}',[ProductController::class, 'destroy']);
+
+
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->middleware(['auth', 'verified','RoleCheck:users,admin,owner'])->name('dashboard');
+
+Route::get('/welcome', function () {
+    return view('welcome');
+})->middleware(['auth', 'verified','RoleCheck:admin,owner'])->name('welcome');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
