@@ -20,6 +20,11 @@ Route::get('/', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified','RoleCheck:users,admin,owner'])->name('dashboard');
 
+
+Route::get('/uts', function () {
+    return view('Uts');
+})->middleware(['auth', 'verified','RoleCheck:users,admin,owner'])->name('Uts');
+
 Route::get('/welcome', function () {
     return view('welcome');
 })->middleware(['auth', 'verified','RoleCheck:admin,owner'])->name('welcome');
